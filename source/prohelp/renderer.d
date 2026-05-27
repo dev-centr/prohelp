@@ -54,17 +54,17 @@ public bool isStdoutTTY() {
 public string stripStyles(string text) {
     auto colorTagRx = ctRegex!`<color=(#[0-9A-Fa-f]{6}|[a-zA-Z]+)>`;
     auto bgTagRx = ctRegex!`<bg=(#[0-9A-Fa-f]{6}|[a-zA-Z]+)>`;
-    auto text = text.replaceAll(colorTagRx, "")
-                    .replaceAll(bgTagRx, "")
-                    .replace("<b>", "")
-                    .replace("<bold>", "")
-                    .replace("<d>", "")
-                    .replace("<dim>", "")
-                    .replace("</>", "")
-                    .replace("</color>", "")
-                    .replace("</b>", "")
-                    .replace("</dim>", "");
-    return text;
+    string clean = text.replaceAll(colorTagRx, "")
+                       .replaceAll(bgTagRx, "")
+                       .replace("<b>", "")
+                       .replace("<bold>", "")
+                       .replace("<d>", "")
+                       .replace("<dim>", "")
+                       .replace("</>", "")
+                       .replace("</color>", "")
+                       .replace("</b>", "")
+                       .replace("</dim>", "");
+    return clean;
 }
 
 // Replaces style tags with ANSI terminal sequences (or strips them if color is disabled)
@@ -94,9 +94,9 @@ public string parseColors(string text, bool enableColor = true) {
             // Hex color e.g., #FF5500
             if (val.length == 7) {
                 try {
-                    int r = parse!int(val[1..3], 16);
-                    int g = parse!int(val[3..5], 16);
-                    int b = parse!int(val[5..7], 16);
+                    int r = to!int(val[1..3], 16);
+                    int g = to!int(val[3..5], 16);
+                    int b = to!int(val[5..7], 16);
                     esc = "\033[38;2;" ~ r.to!string ~ ";" ~ g.to!string ~ ";" ~ b.to!string ~ "m";
                 } catch (Exception) {
                     esc = ""; // ignore bad hex
@@ -142,7 +142,7 @@ public string[] wrapText(string text, size_t maxWidth) {
         
         // Read word by word to keep styles intact
         string[] words = sLine.split(" ");
-        foreach (word in words) {
+        foreach (word; words) {
             string rawWord = stripStyles(word);
             
             if (currentRawLength + rawWord.length + (currentLine.length > 0 ? 1 : 0) > maxWidth) {

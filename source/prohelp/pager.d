@@ -326,7 +326,7 @@ private string extractMarkdownFromBuffer(TUIState state) {
         line = line.stripRight();
         
         // Clean up UI borders
-        line = line.replace("┌", "").replace("┐", "").replace("└", "").replace("┘")
+        line = line.replace("┌", "").replace("┐", "").replace("└", "").replace("┘", "")
                    .replace("├", "").replace("┤", "").replace("│", "").replace("─", "");
         
         if (line.strip().length > 0) {
@@ -368,7 +368,7 @@ private bool processKeyboardInput(TUIState state) {
                     if (keyEvent.bKeyDown) {
                         wchar ch = keyEvent.uChar.UnicodeChar;
                         WORD vk = keyEvent.wVirtualKeyCode;
-                        DWORD ctrl = keyEvent.dwControlState;
+                        DWORD ctrl = keyEvent.dwControlKeyState;
 
                         // Ctrl+Esc to exit
                         if (vk == VK_ESCAPE && (ctrl & (LEFT_CTRL_PRESSED | RIGHT_CTRL_PRESSED))) {
