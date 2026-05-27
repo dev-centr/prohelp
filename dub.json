@@ -2,7 +2,7 @@
     "name": "prohelp",
     "description": "Progressive & Professional Help CLI Interceptor and Library",
     "authors": ["dev-centr"],
-    "license": "MIT",
+    "license": "GPL-3.0",
     "targetType": "library",
     "dependencies": {
         "sdlang-d": "~>0.10.6"

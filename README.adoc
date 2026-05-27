@@ -70,3 +70,9 @@ void main(string[] args) {
 == Changelog
 
 For a full release history and details of specifications, please see the link:CHANGELOG.md[Changelog].
+
+== License
+
+Prohelp is free software licensed under the link:LICENSE[GNU General Public License v3.0 or later] (GPL-3.0-or-later).
+
+You may use, modify, and redistribute it under the terms of the GPL. Derivative works that you distribute must also be licensed under the GPL and include corresponding source. The complete license text is in the link:COPYING[COPYING] file.
