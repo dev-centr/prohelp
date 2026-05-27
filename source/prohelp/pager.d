@@ -81,7 +81,7 @@ public class TUIState {
 }
 
 // Global hook to restore console state on POSIX
-version(POSIX) {
+version(Posix) {
     private termios originalTermios;
     private bool termiosSaved = false;
 
