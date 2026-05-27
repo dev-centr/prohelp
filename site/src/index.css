@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg-graphite: #0c0c0e;
+  --bg-stone: #141416;
+  --bg-stone-panel: #1d1d20;
+  --border-stone: #2e2e33;
+  --border-stone-active: #4a4a52;
+  
+  --text-primary: #f4f4f5;
+  --text-secondary: #a1a1aa;
+  
+  --accent-teal: #06b6d4;
+  --accent-cyan: #22d3ee;
+  --accent-glow: rgba(6, 182, 212, 0.15);
+  
+  --radius-sharp: 2px;
+  --font-sans: 'Outfit', sans-serif;
+  --font-mono: 'Fira Code', monospace;
+  
+  --noise-overlay: url("data:image/svg+xml,%3Csvg viewBox='0%200%20200%20200'%20xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter%20id='noise'%3E%3CfeTurbulence%20type='fractalNoise'%20baseFrequency='0.65'%20numOctaves='3'%20stitchTiles='stitch'/%3E%3C/filter%3E%3Crect%20width='100%25'%20height='100%25'%20filter='url(%23noise)'%20opacity='0.02'/%3E%3C/svg%3E");
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-graphite);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: var(--noise-overlay);
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-graphite);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-stone);
+  border-radius: var(--radius-sharp);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-stone-active);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseBorder {
+  0% { border-color: var(--border-stone); }
+  50% { border-color: var(--accent-teal); }
+  100% { border-color: var(--border-stone); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.code-font {
+  font-family: var(--font-mono);
+}

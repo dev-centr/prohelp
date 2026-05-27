@@ -1,0 +1,84 @@
+command "tar" {
+    summary "Tape archiver utility"
+    description "An archiver utility used to combine multiple files into a single archive file, often referred to as a 'tarball'."
+
+    // Multilingual support
+    locale "de" {
+        summary "Bandarchivierungsprogramm"
+        description "Ein Archivierungswerkzeug zum Zusammenfassen mehrerer Dateien in einer einzigen Archivdatei."
+    }
+
+    locale "es" {
+        summary "Utilidad de archivo en cinta"
+        description "Una herramienta de archivado utilizada para combinar múltiples archivos en un solo archivo, conocido como 'tarball'."
+    }
+
+    section "usage" {
+        summary "Common command usage patterns"
+        content "tar [operation] [options] [files...]"
+
+        example "Create a compressed gzipped archive" "tar -czf archive.tar.gz /path/to/directory"
+        example "Extract an archive to the current directory" "tar -xf archive.tar"
+    }
+
+    section "operations" {
+        summary "Main operation modes"
+
+        // Listed inline in Level 0
+        inline true
+
+        section "creation" {
+            summary "Creating new archives"
+
+            dominance "high" {
+                option "-c" "--create" "Create a new archive from files"
+            }
+            dominance "medium" {
+                option "-A" "--catenate" "--concatenate" "Append tar files to an archive"
+            }
+        }
+
+        section "extraction" {
+            summary "Extracting files from archives"
+
+            dominance "high" {
+                option "-x" "--extract" "--get" "Extract files from an archive"
+            }
+        }
+
+        section "listing" {
+            summary "Listing archive contents"
+            dominance "high" {
+                option "-t" "--list" "List the contents of an archive"
+            }
+        }
+    }
+
+    section "modifiers" {
+        summary "Operation modifiers that change behavior"
+        inline true
+
+        section "archiving-formats" {
+            summary "Compression options and archive formats"
+
+            dominance "high" {
+                option "-z" "--gzip" "--gunzip" "Filter the archive through gzip"
+                option "-j" "--bzip2" "Filter the archive through bzip2"
+            }
+            dominance "low" {
+                option "-J" "--xz" "Filter the archive through xz"
+            }
+        }
+
+        section "file-selection" {
+            summary "Selecting files to include or exclude"
+
+            dominance "medium" {
+                option "-C" "--directory" "Change to directory before performing operations"
+            }
+            dominance "low" {
+                option "--exclude" "Exclude files matching a pattern"
+            }
+        }
+    }
+}

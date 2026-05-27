@@ -1,0 +1,15 @@
+# Changelog
+
+All notable changes to the Prohelp progressive command-line help project are documented here.
+
+This project maintains a structured release history with links to detailed release notes in the `changelog-details/` directory.
+
+---
+
+## Release History
+
+* **2026-05-27** — [Initial Release of Prohelp v0.1.0](changelog-details/2026-05-27%20-%20v0.1.0-release.md)
+  * Complete core Dlang progressive library and CLI parser.
+  * Unicode box-drawing visual zoning in static Text Mode.
+  * Interactive TUI browser (Default Mode) with Shift-selection and Ctrl+C clipboard.
+  * Comma-separated hybrid config suffixes and wildcard globbing.

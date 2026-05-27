@@ -1,0 +1,54 @@
+command "prohelp" {
+    summary "Progressive & Professional Help CLI Interceptor and Library"
+    description "A developer utility and Dlang reference library that intercepts help arguments and renders screen-budgeted progressive documentation."
+
+    locale "de" {
+        summary "Progressives & Professionelles CLI-Hilfesystem"
+        description "Ein Entwicklerwerkzeug und eine Dlang-Bibliothek, die Hilfe-Argumente abfängt und bildschirmgerechte, progressive Dokumentation ausgibt."
+    }
+
+    locale "es" {
+        summary "Sistema de ayuda CLI progresivo y profesional"
+        description "Una utilidad de desarrollo y biblioteca Dlang que intercepta argumentos de ayuda y genera documentación progresiva y estructurada."
+    }
+
+    section "usage" {
+        summary "Integration syntax and execution patterns"
+        content "prohelp [help|?][:[locale][,mode]] [path...] [*]"
+
+        example "Standard progressive Help printout" "prohelp ?"
+        example "German Interactive TUI Viewport" "prohelp ?:de,i"
+        example "Retrieve Text subtree as clean Markdown" "prohelp ?:text commands *"
+    }
+
+    section "navigation" {
+        summary "Subcommand and Section traversal"
+        inline true
+
+        section "hierarchy" {
+            summary "Drill down into categories"
+            option "path" "A sequential list of subsection names as defined in help.sdl"
+        }
+
+        section "globbing" {
+            summary "Wildcards for subtree extraction"
+            option "*" "all" "Dumps the current section and all child pages recursively (Text Mode only)"
+        }
+    }
+
+    section "directives" {
+        summary "Help system parameters (suffixed after colon)"
+        inline true
+
+        section "modes" {
+            summary "Output styles and viewport modes"
+            option "i" "interactive" "Launches full-screen TUI with alphanumeric filter and Ctrl+C copy"
+            option "text" "txt" "Launches static, Unicode-boxed Progressive Text Mode (default)"
+        }
+
+        section "locales" {
+            summary "Language settings"
+            option "locale-code" "A 2-letter language code (e.g. de, es, en) to view translations"
+        }
+    }
+}

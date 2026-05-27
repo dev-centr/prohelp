@@ -1,0 +1,21 @@
+{
+    "name": "prohelp",
+    "description": "Progressive & Professional Help CLI Interceptor and Library",
+    "authors": ["dev-centr"],
+    "license": "MIT",
+    "targetType": "library",
+    "dependencies": {
+        "sdlang-d": "~>0.10.6"
+    },
+    "configurations": [
+        {
+            "name": "library",
+            "targetType": "library"
+        },
+        {
+            "name": "executable",
+            "targetType": "executable",
+            "mainSourceFile": "source/app.d"
+        }
+    ]
+}
