@@ -433,7 +433,7 @@ export default function App() {
         <div class="flex gap-4">
           <a href="https://github.com/dev-centr/prohelp/blob/main/LICENSE" class="hover:text-white transition-colors">GPL-3.0</a>
           <span>·</span>
-          <a href="https://github.com/dev-centr/devcentr/blob/main/docs/modules/specifications/pages/prohelp.adoc" class="hover:text-white transition-colors">Specifications Spec</a>
+          <a href="https://github.com/dev-centr/devcentr/blob/main/docs/modules/specifications/pages/prohelp.adoc" class="hover:text-white transition-colors">Specification</a>
         </div>
       </footer>
 
