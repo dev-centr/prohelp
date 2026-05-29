@@ -1,17 +1,53 @@
-Prohelp — Progressive & Professional CLI Help
-Copyright (C) 2026 dev-centr
+PROHELP COPYLEFT AND DISCLOSURE LICENSE (PCDL)
+Version 1.0, May 2026
 
-This program is free software: you can redistribute it and/or modify it under
-the terms of the GNU General Public License as published by the Free Software
-Foundation, either version 3 of the License, or (at your option) any later
-version.
+Copyright (c) 2026, dev-centr <devcentr.org>
+All rights reserved.
 
-This program is distributed in the hope that it will be useful, but WITHOUT
-ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+This license governs the use, copying, modification, and distribution of the "Prohelp" software and any derivative works thereof.
 
-You should have received a copy of the GNU General Public License along with
-this program. If not, see https://www.gnu.org/licenses/.
+------------------------------------------------------------------------------
+TERMS AND CONDITIONS
+------------------------------------------------------------------------------
 
-The full text of the license is also available in the COPYING file in this
-repository.
+1. DEFINITIONS
+
+"Software" refers to the original source code, binaries, documentation, and assets provided under this license.
+
+"Derivative Work" refers to any work that is based on, derived from, or incorporates any portion of the Software, including but not limited to translations, ports, modifications, integrations, extensions, or rewrites in other programming languages.
+
+"Parent Project" refers to the original repository and organization under which the Software is hosted, currently located at: https://github.com/dev-centr/prohelp
+
+
+2. STRONG COPYLEFT REQUIREMENT
+
+You are permitted to copy, distribute, and modify the Software, provided that any Derivative Work you create and distribute (publicly or within a private network where others have access) is licensed in its entirety under the exact same terms of this Prohelp Copyleft and Disclosure License (PCDL), Version 1.0. You may not apply additional terms or restrictions that conflict with this license.
+
+
+3. MANDATORY DOWNSTREAM DISCLOSURE RIDER
+
+As an express condition of the rights granted under this license, any individual, group, or organization that creates, publishes, deploys, or utilizes a Derivative Work MUST publicly disclose the existence of their derivation and make it known to the Parent Project.
+
+A. Timeline for Disclosure:
+The disclosure must be completed within thirty (30) days of the first public release, public deployment, or active distribution of the Derivative Work.
+
+B. Method of Notification:
+The notification must be submitted to the Parent Project by doing at least one of the following:
+1. Opening a public issue on the Parent Project's official repository (https://github.com/dev-centr/prohelp) containing the disclosure information.
+2. Submitting a pull request to include the Derivative Work in the Parent Project's official registry or documentation.
+
+C. Required Disclosure Information:
+The notification must include:
+1. The official name of the Derivative Work.
+2. A direct, publicly accessible link to the source code repository of the Derivative Work.
+3. A brief description of the modifications, ports, or extensions made to the Parent Project's Software.
+
+
+4. WARRANTY AND LIMITATION OF LIABILITY
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+5. TERMINATION
+
+Any use, distribution, or modification of the Software or its Derivative Works not in compliance with all terms of this license (including both the Copyleft and Disclosure requirements) immediately and automatically terminates your rights under this license. Upon termination, you must cease all use, distribution, and hosting of the Software and all Derivative Works.

@@ -2,7 +2,7 @@ module prohelp.parser;
 
 import std.stdio;
 import std.string;
-import std.conv;
+import std.conv : to;
 import std.array;
 import std.algorithm;
 import sdlang;
@@ -93,22 +93,32 @@ public class Command {
     }
 }
 
-// Main parser function that reads help.sdl
+// Main parser function that reads help.sdl from disk.
 public Command parseHelpSDL(string filename) {
+    import std.file : readText;
+    return parseHelpSDLContent(readText(filename), filename);
+}
+
+// Parse help.sdl content from memory (embedded or interpreter preview).
+public Command parseHelpSDLContent(string content, string sourceLabel) {
     Tag root;
     try {
-        root = parseFile(filename);
+        root = parseSource(content, sourceLabel);
     } catch (Exception e) {
-        throw new Exception("prohelp schema parse error in '" ~ filename ~ "': " ~ e.msg);
+        throw new Exception("prohelp schema parse error in '" ~ sourceLabel ~ "': " ~ e.msg);
     }
 
+    return parseHelpSDLRoot(root, sourceLabel);
+}
+
+private Command parseHelpSDLRoot(Tag root, string sourceLabel) {
     Tag cmdTag = root.getTag("command");
     if (cmdTag is null) {
-        throw new Exception("prohelp schema error: Root 'command' tag is missing in '" ~ filename ~ "'");
+        throw new Exception("prohelp schema error: Root 'command' tag is missing in '" ~ sourceLabel ~ "'");
     }
 
     if (cmdTag.values.length == 0 || cmdTag.values[0].peek!string() is null) {
-        throw new Exception("prohelp schema error: 'command' tag must have a name value (string)");
+        throw new Exception("prohelp schema error: 'command' tag must have a name value (string) in '" ~ sourceLabel ~ "'");
     }
 
     auto cmd = new Command();
@@ -129,10 +139,9 @@ public Command parseHelpSDL(string filename) {
     }
 
     // Check sliding-scale line budgets for Level 0
-    // (Calculated approximately: we print standard root level metadata)
     int rootLines = 6 + cast(int)cmd.sections.length;
     if (rootLines > 20) {
-        stderr.writeln("prohelp warning: Level 0 root help page layout exceeds the 20-line single-screen budget (" ~ 
+        stderr.writeln("prohelp warning: Level 0 root help page layout exceeds the 20-line single-screen budget (" ~
             rootLines.to!string ~ " lines calculated). Consider merging categories or making sections inline.");
     }
 

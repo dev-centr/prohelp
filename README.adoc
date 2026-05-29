@@ -1,4 +1,4 @@
-= Prohelp: Progressive & Professional CLI Help
+= Prohelp: Progressive CLI Help
 dev-centr <devcentr.org>
 v0.1.0, 2026-05-27
 :toc:
@@ -6,7 +6,17 @@ v0.1.0, 2026-05-27
 
 The standard command-line help interface (`--help` or `help`) is broken. It dumps massive walls of unreadable text.
 
-**Prohelp** is a specification and lightweight reference library written in Dlang (with native bindings for C and other languages) that enforces *progressive information disclosure* by organizing CLI documentation into a clean conceptual hierarchy. 
+**Prohelp** is a progressive help specification and reference library: a *professional-grade*, budget-enforced terminal documentation system with Unicode box panels, locale-aware rendering, and an optional full-screen TUI. The official name is intentionally short — *progressive* is the idea; *professional* is the experience.
+
+Prohelp is **not** a full command-line application framework. It solves progressive *help* only. For building CLI tools, use a framework and wire Prohelp in:
+
+* **D (recommended):** link:https://github.com/dev-centr/prohelp-cli[prohelp-cli] with link:https://opendlang.org/library/arsd.cli.html[arsd.cli] (or another D CLI router) — parsing and routing stay in the framework; help stays in Prohelp.
+* **C / BetterC:** the `prohelp` library's C-compatible API (planned) — combine with your existing argv parser.
+* **Other languages:** consume Prohelp through FFI and pair it with your ecosystem's CLI framework (Click, clap, cobra, etc.).
+
+The `prohelp` preview executable ships with built-in help and can interpret any `help.sdl` schema for authoring and testing before you bake help into a product build.
+
+**Prohelp** enforces *progressive information disclosure* by organizing CLI documentation into a clean conceptual hierarchy.
 
 It intercepts user help requests, automatically resolves host system locales, renders structured progressive layouts using 24-bit TrueColor and Unicode box-drawing visual zoning, and bundles an opt-in full-screen interactive Terminal browser.
 
@@ -28,42 +38,52 @@ It intercepts user help requests, automatically resolves host system locales, re
 
 === Compilation
 
-To build the standalone CLI prototyping executable:
+To build the prohelp preview CLI (with built-in `help.sdl` embedded at compile time):
 
 [source,powershell]
 ----
 dub build -c executable
 ----
 
-=== CLI Prototyping
+=== CLI usage
 
-Copy a `help.sdl` schema into the execution folder and run the compiled binary:
+The `prohelp` executable uses the prohelp library on itself. Built-in help is always available:
 
 [source,powershell]
 ----
-# Run static Text Mode progressive help
-.\prohelp.exe ?
+prohelp
+prohelp ?
+prohelp ?:i
+----
 
-# Run full-screen TUI Interactive Browser
-.\prohelp.exe ?:i
+=== Preview mode (schema interpreter)
 
-# Run in German Text Mode drilling directly to 'navigation' subsection
-.\prohelp.exe ?:de navigation
+To preview another application's `help.sdl`, pass the schema path first. Prohelp virtualizes the schema's `command` name (for example `tar`) for rendering and navigation:
+
+[source,powershell]
+----
+prohelp examples/tar.sdl ?
+prohelp examples/tar.sdl ? operations
+prohelp -f myapp/help.sdl ?:de,i
 ----
 
 == Integration API
 
-To use Prohelp in your own Dlang command-line tools, add `prohelp` as a DUB dependency and insert exactly one line at the top of your `main` entry point:
+=== D applications (prefer prohelp-cli)
+
+For new D command-line tools, prefer link:https://github.com/dev-centr/prohelp-cli[prohelp-cli] integrated with a CLI router such as link:https://opendlang.org/library/arsd.cli.html[arsd.cli]. See the prohelp-cli repository for how execution routing and progressive help cooperate.
+
+=== Drop-in intercept (library)
+
+For minimal integration or non-D languages via FFI, add `prohelp` as a dependency and call `intercept` before your existing argument parser:
 
 [source,d]
 ----
-import prohelp;
+import prohelp.intercept;
 
 void main(string[] args) {
-    // 1-Line Drop-in Interceptor
     if (prohelp.intercept(args)) return;
-
-    // Normal application arguments parsing and logic continues...
+    // Your CLI framework or hand-rolled parser continues here...
 }
 ----
 
@@ -73,6 +93,10 @@ For a full release history and details of specifications, please see the link:CH
 
 == License
 
-Prohelp is free software licensed under the link:LICENSE[GNU General Public License v3.0 or later] (GPL-3.0-or-later).
+Prohelp is licensed under the link:LICENSE[Prohelp Copyleft and Disclosure License (PCDL) Version 1.0].
 
-You may use, modify, and redistribute it under the terms of the GPL. Derivative works that you distribute must also be licensed under the GPL and include corresponding source. The complete license text is in the link:COPYING[COPYING] file.
+This is a strong copyleft license with a mandatory downstream disclosure rider. You may copy, modify, and distribute this software provided that:
+1. Any derivative works are licensed under the exact same PCDL Version 1.0 terms (strong copyleft).
+2. You publicly disclose the existence of your derivative work and notify the original project (Parent Project) at link:https://github.com/dev-centr/prohelp[dev-centr/prohelp] within 30 days of release or deployment.
+
+See the link:LICENSE[LICENSE] file for full legal terms.

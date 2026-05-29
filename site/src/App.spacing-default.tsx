@@ -137,7 +137,7 @@ export default function App() {
         
         <div class="lg:col-span-6 flex flex-col gap-6 animate-fade-in" style="animation-delay: 0.2s">
           <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
-            Progressive & Professional <br/>
+            Progressive <br/>
             <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#06b6d4] to-[#22d3ee]">Command-Line Help</span>
           </h1>
           <p class="text-lg text-[#a1a1aa] leading-relaxed">
